@@ -45,7 +45,12 @@ class TwitterExtractor(Extractor):
         self.login()
         metadata = self.metadata()
 
+        processed=[]
         for tweet in self.tweets():
+            currentIds=[tweet["id_str"], tweet["retweeted_status_id_str"] if "retweeted_status_id_str" in tweet else None]
+            if currentIds in processed:
+                continue
+            processed.append(currentIds)
 
             if not self.retweets and "retweeted_status_id_str" in tweet:
                 self.log.debug("Skipping %s (retweet)", tweet["id_str"])
