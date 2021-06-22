@@ -594,7 +594,7 @@ class KeywordJob(Job):
 
             else:
                 # string or number
-                print(key, "\n  ", value, sep="")
+                print(key, " : ", value, sep="")
 
 
 class UrlJob(Job):
